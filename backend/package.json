@@ -1,7 +1,7 @@
 {
   "name": "ai-trading-backend",
   "version": "1.0.0",
-  "description": "AI Trading System Backend API",
+  "description": "AI Trading System Backend with Zerodha Integration",
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
@@ -12,18 +12,37 @@
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "socket.io": "^4.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "express-validator": "^7.0.1",
+    "express-rate-limit": "^7.1.5",
+    "axios": "^1.6.2",
+    "ws": "^8.14.2",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.1",
+    "moment": "^2.29.4",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/cors": "^2.8.17",
     "@types/node": "^20.10.5",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/ws": "^8.5.10",
+    "@types/uuid": "^9.0.7",
+    "@types/lodash": "^4.14.202",
     "typescript": "^5.3.3",
     "ts-node": "^10.9.2"
   },
   "keywords": [
     "trading",
     "ai",
+    "zerodha",
+    "kite",
+    "algorithmic-trading",
     "api",
     "nodejs",
     "express"
