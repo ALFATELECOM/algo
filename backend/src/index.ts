@@ -48,11 +48,33 @@ app.get('/health', (req, res) => {
   });
 });
 
-// API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/trading', require('./routes/trading'));
-app.use('/api/portfolio', require('./routes/portfolio'));
-app.use('/api/ai', require('./routes/ai'));
+// API Routes - Basic endpoints for now
+app.get('/api/status', (req, res) => {
+  res.json({ 
+    status: 'operational',
+    service: 'AI Trading Backend API',
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get('/api/portfolio', (req, res) => {
+  res.json({
+    totalValue: 125000,
+    dailyPnL: 1250,
+    totalPnL: 8500,
+    positions: [
+      { symbol: 'AAPL', quantity: 100, currentPrice: 175.32, pnl: 250 },
+      { symbol: 'MSFT', quantity: 50, currentPrice: 338.11, pnl: 180 }
+    ]
+  });
+});
+
+app.get('/api/trades', (req, res) => {
+  res.json([
+    { symbol: 'AAPL', type: 'BUY', quantity: 100, price: 175.32, time: '10:30 AM', status: 'completed' },
+    { symbol: 'MSFT', type: 'SELL', quantity: 50, price: 338.11, time: '09:45 AM', status: 'completed' }
+  ]);
+});
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
