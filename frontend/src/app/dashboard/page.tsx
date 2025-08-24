@@ -4,24 +4,19 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   TrendingUp, 
-  TrendingDown, 
   DollarSign, 
   BarChart3, 
   Settings, 
   Bell,
   Activity,
-  Wallet,
-  Target,
-  AlertTriangle,
-  Home,
-  User
+  Home
 } from 'lucide-react';
 
 export default function Dashboard() {
   const [isConnected, setIsConnected] = useState(false);
-  const [portfolioValue, setPortfolioValue] = useState(125000);
-  const [dailyPnL, setDailyPnL] = useState(1250);
-  const [totalPnL, setTotalPnL] = useState(8500);
+  const portfolioValue = 125000;
+  const dailyPnL = 1250;
+  const totalPnL = 8500;
 
   useEffect(() => {
     // Simulate connection status
