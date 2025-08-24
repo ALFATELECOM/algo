@@ -32,14 +32,14 @@ export default function Dashboard() {
       icon: DollarSign,
     },
     {
-      title: 'Daily P&L',
+      title: 'Daily PnL',
       value: `$${dailyPnL.toLocaleString()}`,
       change: '+1.2%',
       changeType: 'positive',
       icon: TrendingUp,
     },
     {
-      title: 'Total P&L',
+      title: 'Total PnL',
       value: `$${totalPnL.toLocaleString()}`,
       change: '+7.2%',
       changeType: 'positive',
@@ -126,7 +126,7 @@ export default function Dashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <div key={stat.title} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -233,8 +233,8 @@ export default function Dashboard() {
                     </tr>
                   </thead>
                   <tbody>
-                    {recentTrades.map((trade, index) => (
-                      <tr key={index} className="border-b border-gray-100">
+                    {recentTrades.map((trade, tradeIndex) => (
+                      <tr key={tradeIndex} className="border-b border-gray-100">
                         <td className="py-3 font-medium">{trade.symbol}</td>
                         <td className={`py-3 ${trade.type === 'BUY' ? 'text-green-600' : 'text-red-600'}`}>
                           {trade.type}
@@ -270,11 +270,11 @@ export default function Dashboard() {
                   <span className="font-bold">${portfolioValue.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Today's P&L</span>
+                  <span className="text-gray-600">Today PnL</span>
                   <span className="font-bold text-green-600">+${dailyPnL.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Total P&L</span>
+                  <span className="text-gray-600">Total PnL</span>
                   <span className="font-bold text-green-600">+${totalPnL.toLocaleString()}</span>
                 </div>
               </div>
@@ -284,8 +284,8 @@ export default function Dashboard() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">AI Insights</h2>
               <div className="space-y-4">
-                {aiInsights.map((insight, index) => (
-                  <div key={index} className={`p-4 rounded-lg border-l-4 ${
+                {aiInsights.map((insight, insightIndex) => (
+                  <div key={insightIndex} className={`p-4 rounded-lg border-l-4 ${
                     insight.priority === 'high' 
                       ? 'border-red-500 bg-red-50' 
                       : 'border-yellow-500 bg-yellow-50'
@@ -321,7 +321,7 @@ export default function Dashboard() {
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Market Overview</h2>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">S&P 500</span>
+                  <span className="text-gray-600">SP 500</span>
                   <div className="text-right">
                     <div className="font-medium">4,378.32</div>
                     <div className="text-sm text-green-600">+0.75%</div>
