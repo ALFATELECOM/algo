@@ -1,49 +1,67 @@
 {
-  "name": "ai-trading-system",
+  "name": "ai-trading-backend",
   "version": "1.0.0",
-  "description": "AI-Powered Algorithmic Trading System",
-  "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
+  "description": "AI Trading System Backend with Zerodha Integration",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ai\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:ai": "cd ai-models && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
-    "build": "npm run build:frontend && npm run build:backend",
-    "build:frontend": "cd frontend && npm run build",
-    "build:backend": "cd backend && npm run build",
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\" \"npm run start:ai\"",
-    "start:frontend": "cd frontend && npm run start",
-    "start:backend": "cd backend && npm run start",
-    "start:ai": "cd ai-models && python -m uvicorn main:app --host 0.0.0.0 --port 8000",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "lint": "npm run lint:frontend && npm run lint:backend",
-    "lint:frontend": "cd frontend && npm run lint",
-    "lint:backend": "cd backend && npm run lint",
-    "test": "npm run test:frontend && npm run test:backend",
-    "test:frontend": "cd frontend && npm run test",
-    "test:backend": "cd backend && npm run test",
-    "clean": "npm run clean:frontend && npm run clean:backend",
-    "clean:frontend": "cd frontend && rm -rf .next node_modules",
-    "clean:backend": "cd backend && rm -rf dist node_modules",
-    "setup": "npm run install:all && npm run setup:ai",
-    "setup:ai": "cd ai-models && pip install -r requirements.txt"
+    "dev": "ts-node src/index.ts",
+    "build": "tsc --skipLibCheck",
+    "start": "node dist/index.js",
+    "postinstall": "npm run build",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "socket.io": "^4.7.4",
+    "ws": "^8.14.2",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "node-cron": "^3.0.3",
+    "technicalindicators": "^3.1.0",
+    "talib": "^1.1.4",
+    "simple-statistics": "^7.8.3",
+    "ml-matrix": "^6.10.7",
+    "ml-regression": "^5.0.0",
+    "node-fetch": "^3.3.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.1",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "nodemailer": "^6.9.7",
+    "winston": "^3.11.0",
+    "helmet": "^7.1.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.10.5",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/ws": "^8.5.10",
+    "@types/lodash": "^4.14.202",
+    "@types/uuid": "^9.0.7",
+    "@types/nodemailer": "^6.4.14",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2"
   },
   "keywords": [
     "trading",
     "ai",
-    "algorithmic",
-    "nextjs",
+    "zerodha",
+    "kite",
+    "algorithmic-trading",
+    "api",
     "nodejs",
-    "python",
-    "fastapi"
+    "express"
   ],
   "author": "AI Trading Team",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
