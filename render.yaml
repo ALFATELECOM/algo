@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: ai-trading-backend
+    env: node
+    plan: starter
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ZERODHA_API_KEY
+        sync: false
+      - key: ZERODHA_API_SECRET
+        sync: false
+      - key: AI_MODEL_ENDPOINT
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://your-frontend-domain.vercel.app
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: redis
+    name: ai-trading-redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru
+
+databases:
+  - name: ai-trading-db
+    databaseName: ai_trading_db
+    user: ai_trading_user
+    plan: starter
